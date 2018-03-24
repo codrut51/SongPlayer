@@ -1,8 +1,8 @@
 package com.song;
 
-public class PlayTrack extends CommandButton {
-
-	public PlayTrack()
+public class PauseTrack extends CommandButton {
+	
+	public PauseTrack()
 	{
 		
 	}
