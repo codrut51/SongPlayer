@@ -1,6 +1,7 @@
 package com.song;
 
-import javax.swing.JLabel;
+
+import com.song.logic.*;
 
 public class PlayPreviousTrack extends CommandButton {
 
@@ -10,9 +11,9 @@ public class PlayPreviousTrack extends CommandButton {
 	}
 
 	@Override
-	public void doAction(JLabel l) {
-		// TODO Auto-generated method stub
-		
+	public void doAction(LogicManager l) {
+		System.out.println("Playing previous track");
 	}
+
 	
 }

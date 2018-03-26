@@ -1,6 +1,6 @@
 package com.song;
 
-import javax.swing.JLabel;
+import com.song.logic.*;
 
 public class PlayTrack extends CommandButton {
 
@@ -10,8 +10,9 @@ public class PlayTrack extends CommandButton {
 	}
 
 	@Override
-	public void doAction(JLabel l) {
-		
+	public void doAction(LogicManager l) {
+
+		System.out.println("Playing current track");
 	}
 	
 }

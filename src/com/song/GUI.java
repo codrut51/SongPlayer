@@ -23,10 +23,9 @@ public class GUI {
 		PlayerPanelFactory pFactory = new PlayerPanelFactory();
 		PlayerPanel pPanel = pFactory.getGetPlayerPanel("Welcome");
 		PlayerPanel pPanel1 = pFactory.getGetPlayerPanel("Control");
-		pPanel.createPanel(frame);
 		pPanel1.createPanel(frame);
+		pPanel.createPanel(frame);
 		frame.setBounds(100, 100, 600, 400);
 		frame.setVisible(true);
-		System.out.println(frame.getContentPane().getComponentCount());
 	}
 }

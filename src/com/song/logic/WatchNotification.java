@@ -1,5 +1,9 @@
 package com.song.logic;
 
-public class WatchNotification {
+public abstract class WatchNotification {
 
+	protected Notification notify = new Notification();
+	protected MusicStreamingServiceApi api;
+	
+	public abstract void update();
 }

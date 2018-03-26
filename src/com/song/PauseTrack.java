@@ -1,6 +1,6 @@
 package com.song;
 
-import javax.swing.JLabel;
+import com.song.logic.*;
 
 public class PauseTrack extends CommandButton {
 	
@@ -10,8 +10,9 @@ public class PauseTrack extends CommandButton {
 	}
 
 	@Override
-	public void doAction(JLabel l) {
-		
+	public void doAction(LogicManager l) {
+
+		System.out.println("Pausing current track");
 	}
 	
 }

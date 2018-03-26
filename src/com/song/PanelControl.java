@@ -2,21 +2,22 @@ package com.song;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class PanelControl extends PlayerPanel {
 
-	private CommandButton cmdBtn;
+	private ArrayList<ClickListener> cmdbtns;
 	private ArrayList<String> buttons;
 	
 	public PanelControl()
 	{
-		cmdBtn = null;
-		System.out.println(cmdBtn);
+		cmdbtns = new ArrayList<ClickListener>();
+		cmdbtns.add(new ClickListener(new PlayPreviousTrack()));
+		cmdbtns.add(new ClickListener(new PlayTrack()));
+		cmdbtns.add(new ClickListener(new PauseTrack()));
+		cmdbtns.add(new ClickListener(new PlayNextTrack()));
 		buttons = new ArrayList<String>();
 		buttons.add("Prev");
 		buttons.add("Play");
@@ -27,7 +28,7 @@ public class PanelControl extends PlayerPanel {
 	@Override
 	public void createPanel(JFrame f) {
 		JPanel p = new JPanel();
-		p.setName("Welcome");
+		p.setName("Control");
 		p.setBounds(0, 0, 600, 400);
 		f.getContentPane().add(p);
 		p.setLayout(null);
@@ -46,16 +47,9 @@ public class PanelControl extends PlayerPanel {
 			}else {
 				b.setBounds(40 + (i*110), 300, 100, 20);
 			}
-			b.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+			b.addActionListener(cmdbtns.get(i));
 			p.add(b);
 		}
 		
 	}
-	
 }

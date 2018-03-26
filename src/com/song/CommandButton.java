@@ -1,9 +1,10 @@
 package com.song;
 
-import javax.swing.JLabel;
+
+import com.song.logic.*;
 
 public abstract class CommandButton {
 	
-	public abstract void doAction(JLabel l);
+	public abstract void doAction(LogicManager l);
 
 }
