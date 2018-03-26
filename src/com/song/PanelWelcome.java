@@ -16,10 +16,12 @@ public class PanelWelcome extends PlayerPanel {
 	}
 
 	@Override
-	public JPanel createPanel(JFrame f) {
+	public void createPanel(JFrame f) {
 		JPanel p = new JPanel();
-		p.setLayout(null);
+		p.setBounds(0, 0, 600, 400);
 		p.setName("Welcome");
+		f.getContentPane().add(p);
+		p.setLayout(null);
 		JLabel l = new JLabel("<html><div style='text-align: center;'>" + "Welcome to Deezer Song Player!" + "</div></html>");
 		l.setBounds(100, 50, 400, 25);
 		l.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -31,7 +33,7 @@ public class PanelWelcome extends PlayerPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				p.setVisible(false);
+				p.setBounds(600,0,0,0);
 				setControlVisible(f);
 			}
 			
@@ -39,19 +41,18 @@ public class PanelWelcome extends PlayerPanel {
 		p.setBackground(Color.white);
 		p.add(l);
 		p.add(b);
-		return p;
 	}
 	
 	private void setControlVisible(JFrame f)
 	{
-		Component[] comps = f.getComponents();
+		Component[] comps = f.getContentPane().getComponents();
 		for(Component comp : comps)
 		{
 			if(comp.getName() != null)
 			{
 				if(comp.getName().equals("Control"))
 				{
-					comp.setVisible(true);
+					System.out.println(comp.getName() + comp.getWidth());
 				}
 			}
 		}

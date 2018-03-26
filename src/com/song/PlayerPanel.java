@@ -7,5 +7,5 @@ public abstract class PlayerPanel {
 
 	protected Notification notify;
 	protected MusicStreamingServiceApi api;
-	public abstract JPanel createPanel(JFrame f);
+	public abstract void createPanel(JFrame f);
 }

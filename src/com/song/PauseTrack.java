@@ -1,5 +1,7 @@
 package com.song;
 
+import javax.swing.JLabel;
+
 public class PauseTrack extends CommandButton {
 	
 	public PauseTrack()
@@ -8,7 +10,7 @@ public class PauseTrack extends CommandButton {
 	}
 
 	@Override
-	public void doAction() {
+	public void doAction(JLabel l) {
 		
 	}
 	
