@@ -1,5 +1,9 @@
 package com.song.logic;
 
-public class MusicStreamingServiceApi {
+public interface MusicStreamingServiceApi {
 
+	public void play();
+	public void pause();
+	public void previous();
+	public void next();
 }
