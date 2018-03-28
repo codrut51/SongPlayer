@@ -5,17 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
-import com.song.logic.LogicManager;
+import com.song.logic.MusicPlayer;
 
 public class Commander implements ActionListener{
 
 	private CommandButton cmdBtn;
-	private LogicManager manager;
+	private MusicPlayer manager;
 	private JLabel l;
 	public Commander(CommandButton b)
 	{
 		this.cmdBtn = b;
-		manager = new LogicManager();
+		manager = new MusicPlayer();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

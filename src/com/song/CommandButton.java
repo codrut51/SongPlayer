@@ -5,6 +5,6 @@ import com.song.logic.*;
 
 public abstract class CommandButton {
 	
-	public abstract void doAction(LogicManager l);
+	public abstract void doAction(MusicPlayer l);
 
 }

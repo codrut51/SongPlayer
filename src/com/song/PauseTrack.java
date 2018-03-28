@@ -10,7 +10,7 @@ public class PauseTrack extends CommandButton {
 	}
 
 	@Override
-	public void doAction(LogicManager l) {
+	public void doAction(MusicPlayer l) {
 
 		System.out.println("Pausing current track");
 	}

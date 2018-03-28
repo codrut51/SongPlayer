@@ -1,6 +1,6 @@
 package com.song.logic;
 
-public class XMLSpotify implements SpotifyMusicApi{
+public class XMLSpotify extends SpotifyMusicApi{
 
 	public XMLSpotify()
 	{
@@ -27,6 +27,18 @@ public class XMLSpotify implements SpotifyMusicApi{
 
 	@Override
 	public void next() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Song getCurrentSong() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setCurrentSong() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,9 +1,12 @@
 package com.song.logic;
 
-public interface SpotifyMusicApi {
+public abstract class SpotifyMusicApi {
 
-	public void play();
-	public void pause();
-	public void previous();
-	public void next();
+	protected Song current;
+	public abstract void play();
+	public abstract void pause();
+	public abstract void previous();
+	public abstract void next();
+	public abstract Song getCurrentSong();
+	protected abstract void setCurrentSong();
 }
