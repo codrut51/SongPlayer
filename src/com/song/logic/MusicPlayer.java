@@ -8,7 +8,7 @@ public class MusicPlayer {
 	public MusicPlayer()
 	{
 		notification = new Notifier();
-		api = new DeezerMusicApi();
+		api = new DeezerMusicApi("json");
 	}
 	
 	public Notifier getNotification()

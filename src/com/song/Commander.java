@@ -10,17 +10,18 @@ import com.song.logic.MusicPlayer;
 public class Commander implements ActionListener{
 
 	private CommandButton cmdBtn;
-	private MusicPlayer manager;
+	private MusicPlayer mp;
 	private JLabel l;
 	public Commander(CommandButton b)
 	{
 		this.cmdBtn = b;
-		manager = new MusicPlayer();
+		mp = new MusicPlayer();
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		cmdBtn.doAction(manager);
+		cmdBtn.doAction(mp);
+		updateView();
 	}
 
 	public void setView(JLabel l)
@@ -28,10 +29,10 @@ public class Commander implements ActionListener{
 		this.l = l;
 	}
 	
-	public void updateView()
+	private void updateView()
 	{
 		//set string
-		l.setText("idk");
+		l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
 	}
 	
 }

@@ -16,25 +16,25 @@ public class ApiAdapter extends MusicStreamingServiceApi {
 	@Override
 	public void play() {
 		// TODO Auto-generated method stub
-		
+		spotify.play();
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
+		spotify.pause();
 	}
 
 	@Override
 	public void previous() {
 		// TODO Auto-generated method stub
-		
+		spotify.previous();
 	}
 
 	@Override
 	public void next() {
 		// TODO Auto-generated method stub
-		
+		spotify.next();
 	}
 
 	@Override
@@ -43,8 +43,9 @@ public class ApiAdapter extends MusicStreamingServiceApi {
 		return null;
 	}
 
+
 	@Override
-	protected void setCurrentSong() {
+	protected void setCurrentSong(String url) {
 		// TODO Auto-generated method stub
 		
 	}

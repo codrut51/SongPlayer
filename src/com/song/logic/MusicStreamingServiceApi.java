@@ -8,5 +8,5 @@ public abstract class MusicStreamingServiceApi {
 	public abstract void previous();
 	public abstract void next();
 	public abstract Song getCurrentSong();
-	protected abstract void setCurrentSong();
+	protected abstract void setCurrentSong(String url);
 }
