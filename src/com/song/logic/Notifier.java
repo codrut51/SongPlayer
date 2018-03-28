@@ -2,10 +2,10 @@ package com.song.logic;
 
 import java.util.ArrayList;
 
-public class Notification {
+public class Notifier {
 	private ArrayList<WatchNotification> observers;
 	private String notification;
-	public Notification()
+	public Notifier()
 	{
 		observers = new ArrayList<WatchNotification>();
 		notification = "No news";

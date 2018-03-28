@@ -1,6 +1,6 @@
 package com.song.logic;
 
-public class ApiAdapter implements MusicStreamingServiceApi {
+public class ApiAdapter extends MusicStreamingServiceApi {
 
 	private SpotifyMusicApi spotify;
 	public ApiAdapter(String method)
@@ -33,6 +33,18 @@ public class ApiAdapter implements MusicStreamingServiceApi {
 
 	@Override
 	public void next() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Song getCurrentSong() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setCurrentSong() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,16 +1,17 @@
 package com.song.logic;
 
-public class LogicManager {
+public class MusicPlayer {
 
-	private Notification notification;
+	private Notifier notification;
 	private MusicStreamingServiceApi api;
 	
-	public LogicManager()
+	public MusicPlayer()
 	{
-		
+		notification = new Notifier();
+		api = new DeezerMusicApi();
 	}
 	
-	public Notification getNotification()
+	public Notifier getNotification()
 	{
 		return notification;
 	}
