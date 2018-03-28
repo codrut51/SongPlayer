@@ -8,16 +8,16 @@ import javax.swing.*;
 
 public class PanelControl extends PlayerPanel {
 
-	private ArrayList<ClickListener> cmdbtns;
+	private ArrayList<Commander> cmdbtns;
 	private ArrayList<String> buttons;
 	
 	public PanelControl()
 	{
-		cmdbtns = new ArrayList<ClickListener>();
-		cmdbtns.add(new ClickListener(new PlayPreviousTrack()));
-		cmdbtns.add(new ClickListener(new PlayTrack()));
-		cmdbtns.add(new ClickListener(new PauseTrack()));
-		cmdbtns.add(new ClickListener(new PlayNextTrack()));
+		cmdbtns = new ArrayList<Commander>();
+		cmdbtns.add(new Commander(new PlayPreviousTrack()));
+		cmdbtns.add(new Commander(new PlayTrack()));
+		cmdbtns.add(new Commander(new PauseTrack()));
+		cmdbtns.add(new Commander(new PlayNextTrack()));
 		buttons = new ArrayList<String>();
 		buttons.add("Prev");
 		buttons.add("Play");

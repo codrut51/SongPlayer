@@ -1,6 +1,6 @@
 package com.song.logic;
 
-public class DeezerMusicApi implements MusicStreamingServiceApi{
+public class DeezerMusicApi extends MusicStreamingServiceApi{
 	
 	public DeezerMusicApi()
 	{
@@ -27,6 +27,18 @@ public class DeezerMusicApi implements MusicStreamingServiceApi{
 
 	@Override
 	public void next() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Song getCurrentSong() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void setCurrentSong() {
 		// TODO Auto-generated method stub
 		
 	}
