@@ -31,6 +31,7 @@ public class Commander implements ActionListener{
 	public void updateView()
 	{
 		//set string
+		l.setText("idk");
 	}
 	
 }

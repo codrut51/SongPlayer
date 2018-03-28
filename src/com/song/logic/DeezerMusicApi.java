@@ -1,7 +1,10 @@
 package com.song.logic;
 
+import javazoom.jl.player.advanced.AdvancedPlayer;
+
 public class DeezerMusicApi extends MusicStreamingServiceApi{
 	
+	private AdvancedPlayer player = null;
 	public DeezerMusicApi()
 	{
 		
@@ -34,7 +37,7 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 	@Override
 	public Song getCurrentSong() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.current;
 	}
 
 	@Override
