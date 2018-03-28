@@ -2,7 +2,7 @@ package com.song;
 
 import com.song.logic.*;
 
-public class PlayNextTrack extends CommandButton {
+public class PlayNextTrack extends Command {
 
 	public PlayNextTrack()
 	{
@@ -12,7 +12,7 @@ public class PlayNextTrack extends CommandButton {
 	@Override
 	public void doAction(MusicPlayer l) {
 
-		System.out.println("Playing next track");
+		l.getStreamingServiceApi().next();
 	}
 
 }

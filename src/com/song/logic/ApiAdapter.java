@@ -40,13 +40,13 @@ public class ApiAdapter extends MusicStreamingServiceApi {
 	@Override
 	public Song getCurrentSong() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.current;
 	}
 
 
 	@Override
 	protected void setCurrentSong(String url) {
 		// TODO Auto-generated method stub
-		
+		this.current = spotify.getCurrentSong();
 	}
 }

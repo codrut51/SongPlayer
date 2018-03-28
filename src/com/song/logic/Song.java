@@ -44,6 +44,6 @@ public class Song {
 	
 	public String getDetails()
 	{
-		return "Song: " + title + "; Played by: " + author;
+		return "Song: " + title +"  Played by: " + author;
 	}
 }

@@ -23,4 +23,21 @@ public class PlayerPanelFactory {
 		return null;
 	}
 	
+
+	public Command getCommand(String command)
+	{
+		if(command != null)
+		{
+			if(command.equals("PlayNext"))
+			{
+				return new PlayNextTrack();
+			} 
+			else if(command.equals("Play")) 
+			{
+				return new PlayTrack();
+			}
+		}
+		return null;
+	}
+	
 }

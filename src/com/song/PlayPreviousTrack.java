@@ -3,7 +3,7 @@ package com.song;
 
 import com.song.logic.*;
 
-public class PlayPreviousTrack extends CommandButton {
+public class PlayPreviousTrack extends Command {
 
 	public PlayPreviousTrack()
 	{
@@ -12,7 +12,7 @@ public class PlayPreviousTrack extends CommandButton {
 
 	@Override
 	public void doAction(MusicPlayer l) {
-		System.out.println("Playing previous track");
+		l.getStreamingServiceApi().previous();
 	}
 
 	

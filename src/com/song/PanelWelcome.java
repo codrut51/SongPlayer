@@ -18,7 +18,7 @@ public class PanelWelcome extends PlayerPanel {
 	@Override
 	public void createPanel(JFrame f) {
 		JPanel p = new JPanel();
-		p.setBounds(0, 0, 600, 400);
+		p.setBounds(0, 0, 800, 400);
 		p.setName("Welcome");
 		f.getContentPane().add(p);
 		p.setLayout(null);

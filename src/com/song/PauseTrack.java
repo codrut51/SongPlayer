@@ -2,7 +2,7 @@ package com.song;
 
 import com.song.logic.*;
 
-public class PauseTrack extends CommandButton {
+public class PauseTrack extends Command {
 	
 	public PauseTrack()
 	{
@@ -12,7 +12,7 @@ public class PauseTrack extends CommandButton {
 	@Override
 	public void doAction(MusicPlayer l) {
 
-		System.out.println("Pausing current track");
+		l.getStreamingServiceApi().pause();
 	}
 	
 }

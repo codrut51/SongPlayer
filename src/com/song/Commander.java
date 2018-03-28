@@ -9,13 +9,13 @@ import com.song.logic.MusicPlayer;
 
 public class Commander implements ActionListener{
 
-	private CommandButton cmdBtn;
+	private Command cmdBtn;
 	private MusicPlayer mp;
 	private JLabel l;
-	public Commander(CommandButton b)
+	public Commander(Command b, MusicPlayer mp)
 	{
 		this.cmdBtn = b;
-		mp = new MusicPlayer();
+		this.mp = mp;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -27,6 +27,7 @@ public class Commander implements ActionListener{
 	public void setView(JLabel l)
 	{
 		this.l = l;
+		updateView();
 	}
 	
 	private void updateView()

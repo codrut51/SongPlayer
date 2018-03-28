@@ -25,7 +25,8 @@ public class GUI {
 		PlayerPanel pPanel1 = pFactory.getGetPlayerPanel("Control");
 		pPanel1.createPanel(frame);
 		pPanel.createPanel(frame);
-		frame.setBounds(100, 100, 600, 400);
+		frame.setBounds(100, 100, 800, 400);
+		frame.setResizable(false);
 		frame.setVisible(true);
 	}
 }

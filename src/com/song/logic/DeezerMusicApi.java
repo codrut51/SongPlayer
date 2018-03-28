@@ -14,22 +14,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+import javazoom.jl.player.advanced.PlaybackListener;
 
 public class DeezerMusicApi extends MusicStreamingServiceApi{
 	
 	private AdvancedPlayer player = null;
 	private Thread t;
 	private ApiAdapter adapter = null;
-	private boolean isPlaying;
-	private boolean isPaused;
+	private int stopAt;
 	public DeezerMusicApi(String method)
 	{
-		isPlaying = false;
-		isPaused = false;
 		if(method.equalsIgnoreCase("xml") || method.equalsIgnoreCase("yaml"))
 		{
 			adapter = new ApiAdapter(method);
-		} else {
+		} else if(method.equalsIgnoreCase("json")){
+			setCurrentSong(null);
+		}else {
 			System.out.println("Method not available");
 		}
 	}
@@ -42,15 +43,34 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 		{
 	        if (player != null) 
 	        {
-	        	if(!isPlaying && !isPaused)
+	        	try {
+		         if(t == null || !t.isAlive())
+		         {
+			 		InputStream buff = (InputStream)new BufferedInputStream(new URL(this.current.getPreview()).openStream()); //new BufferedInputStream(new FileInputStream(new File(path)));
+			        this.player = new AdvancedPlayer(buff);
+			        player.setPlayBackListener(new PlaybackListener() {
+			            @Override
+			            public void playbackStarted(PlaybackEvent playbackEvent) {
+			            }
+
+			            @Override
+			            public void playbackFinished(PlaybackEvent playbackEvent) {
+			            	stopAt = playbackEvent.getFrame();
+			            }
+			        });
+		         }
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+	        	if(t == null && stopAt == 0)
 	        	{
+	        		t = null;
 		        	t = new Thread(new Runnable() {
 		
 						@Override
 						public void run() {
 				            try {
 								player.play();
-								isPlaying = true;
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -58,9 +78,25 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 				        }        		
 		        	});
 		        	t.start();
-	        	}else if(isPaused) 
-	        	{
-	        		t.notify();
+	        	} else {
+	        		if(stopAt != 0)
+	        		{
+	        			
+		        		t = null;
+			        	t = new Thread(new Runnable() {
+			
+							@Override
+							public void run() {
+					            try {
+									player.play(stopAt);
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					        }        		
+			        	});
+			        	t.start();
+	        		}
 	        	}
 	        	
 	        }
@@ -82,30 +118,21 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		try {
-			t.wait();
-			isPaused = true;
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		if(adapter == null)
 		{
+			player.stop();
 		}else {
-			adapter.play();
+			adapter.pause();
 		}
 	}
 
 	@Override
 	public void previous() {
 		// TODO Auto-generated method stub
-		isPaused = false;
-		isPlaying = false;
-		t.interrupt();
-		setCurrentSong(current.getPrevious());
+
 		if(adapter == null)
 		{
+			setCurrentSong(current.getPrevious());
 		}else {
 			adapter.play();
 		}
@@ -114,12 +141,9 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 	@Override
 	public void next() {
 		// TODO Auto-generated method stub
-		isPaused = false;
-		isPlaying = false;
-		t.interrupt();
-		setCurrentSong(current.getNext());
 		if(adapter == null)
 		{
+			setCurrentSong(current.getNext());
 		}else {
 			adapter.play();
 		}
@@ -148,7 +172,7 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 			try {
 				// TODO Auto-generated method stub
 				 String searchForType = "track"; //track, album, artist and playlist
-		         String searchFor = "trip%to%mongolia"; //trackname, songname, artistname etc
+		         String searchFor = "Till%I%Collapse"; //trackname, songname, artistname etc
 		         URL oracle;
 		         if(url == null)
 		         {
@@ -161,14 +185,11 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 		
 		         String inputLine;
 		         while ((inputLine = in.readLine()) != null) {
-		             System.out.println(inputLine);
 		             JSONObject obj = new JSONObject(inputLine);
 		             JSONArray arr = obj.getJSONArray("data");
 		
 		
 		             for (Object o : arr) {
-		                 System.out.println("\n");
-		
 		                 JSONObject songDetails = (JSONObject) o;
 		
 		                 String trackTitle = (String) songDetails.get("title");
@@ -191,8 +212,6 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 		             }
 		         }
 		         in.close();
-		 		InputStream buff = (InputStream)new BufferedInputStream(new URL(preview).openStream()); //new BufferedInputStream(new FileInputStream(new File(path)));
-		        player = new AdvancedPlayer(buff);
 		     } catch (FileNotFoundException e1) {
 		         e1.printStackTrace();
 		     } catch (IOException e2) {
@@ -201,9 +220,27 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 		         e3.printStackTrace();
 		     } catch (Exception e) {
 				// TODO Auto-generated catch block
+			}
+			try {
+				this.current = new Song(title, artist, preview, previous, next);
+		         if(t == null || !t.isAlive())
+		         {
+			 		InputStream buff = (InputStream)new BufferedInputStream(new URL(this.current.getPreview()).openStream()); //new BufferedInputStream(new FileInputStream(new File(path)));
+			        player = new AdvancedPlayer(buff);
+			        player.setPlayBackListener(new PlaybackListener() {
+			            @Override
+			            public void playbackStarted(PlaybackEvent playbackEvent) {
+			            }
+
+			            @Override
+			            public void playbackFinished(PlaybackEvent playbackEvent) {
+			            	stopAt = playbackEvent.getFrame();
+			            }
+			        });
+		         }
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			this.current = new Song(title, artist, preview, previous, next);
 		}else {
 			adapter.setCurrentSong(url);
 		}

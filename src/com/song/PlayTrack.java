@@ -2,7 +2,7 @@ package com.song;
 
 import com.song.logic.*;
 
-public class PlayTrack extends CommandButton {
+public class PlayTrack extends Command {
 
 	public PlayTrack()
 	{
@@ -11,8 +11,7 @@ public class PlayTrack extends CommandButton {
 
 	@Override
 	public void doAction(MusicPlayer l) {
-
-		System.out.println("Playing current track");
+		l.getStreamingServiceApi().play();
 	}
 	
 }
