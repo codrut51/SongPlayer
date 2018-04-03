@@ -10,8 +10,8 @@ public class PlayTrack extends Command {
 	}
 
 	@Override
-	public void doAction(MusicPlayer l) {
-		l.getStreamingServiceApi().play();
+	public void doAction(MusicStreamingServiceApi l) {
+		l.play();
 	}
 	
 }

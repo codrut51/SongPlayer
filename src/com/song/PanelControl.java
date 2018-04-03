@@ -2,7 +2,8 @@ package com.song;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -10,27 +11,13 @@ import com.song.logic.MusicPlayer;
 
 public class PanelControl extends PlayerPanel {
 
-	private ArrayList<Commander> cmdbtns;
-	private ArrayList<String> buttons;
-	
 	public PanelControl()
 	{
-
-		MusicPlayer mp = new MusicPlayer();
-		cmdbtns = new ArrayList<Commander>();
-		cmdbtns.add(new Commander(new PlayPreviousTrack(), mp));
-		cmdbtns.add(new Commander(new PlayTrack(), mp));
-		cmdbtns.add(new Commander(new PauseTrack(), mp));
-		cmdbtns.add(new Commander(new PlayNextTrack(), mp));
-		buttons = new ArrayList<String>();
-		buttons.add("Prev");
-		buttons.add("Play");
-		buttons.add("Pause");
-		buttons.add("Next");
 	}
 
 	@Override
 	public void createPanel(JFrame f) {
+		MusicPlayer mp = new MusicPlayer();
 		JPanel p = new JPanel();
 		p.setName("Control");
 		p.setBounds(0, 0, 800, 400);
@@ -42,23 +29,72 @@ public class PanelControl extends PlayerPanel {
 		l.setSize(700,50);
 		//l.setHorizontalAlignment(JLabel.CENTER);
 		l.setVerticalAlignment(SwingConstants.CENTER);
-		l.setFont(new Font("Verdana", Font.BOLD, 14));
+		l.setFont(new Font("Comic Sans", Font.BOLD, 14));
 		p.setBackground(Color.white);
 		p.add(l);
-		int size = buttons.size();
-		for(int i = 0; i < size; i++)
-		{
-			JButton b = new JButton(buttons.get(i));
-			if(i != 0)
-			{
-				b.setBounds(100 + ((i*110) + (50 * i)), 300, 100, 20);
-			}else {
-				b.setBounds(100 + (i*110), 300, 100, 20);
+		CommandFactory cf = new CommandFactory(); 
+		JLabel l1 = new JLabel();
+		//l.setBounds(100, 50, 400, 25);
+		l1.setLocation(100, 100);
+		l1.setSize(700,50);
+		//l.setHorizontalAlignment(JLabel.CENTER);
+		l1.setVerticalAlignment(SwingConstants.CENTER);
+		l1.setFont(new Font("Verdana", Font.BOLD, 14));
+		p.setBackground(Color.white);
+		p.add(l1);
+		l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
+		JButton prev = new JButton("prev");
+		prev.setBounds(100, 200, 100, 20);
+		prev.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Command c = cf.getCommand("Prev");
+				mp.executeCommand(c);
+				l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
+				l1.setText(mp.getNotification().getNotification());
 			}
-			b.addActionListener(cmdbtns.get(i));
-			cmdbtns.get(i).setView(l);
-			p.add(b);
-		}
+		});
+		p.add(prev);
+		JButton play = new JButton("play");
+		play.setBounds(250, 200, 100, 20);
+		play.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Command c = cf.getCommand("Play");
+				mp.executeCommand(c);
+				l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
+				l1.setText(mp.getNotification().getNotification());
+			}
+		});
+		p.add(play);
+		JButton pause = new JButton("pause");
+		pause.setBounds(400, 200, 100, 20);
+		pause.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Command c = cf.getCommand("Pause");
+				mp.executeCommand(c);
+				l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
+				l1.setText(mp.getNotification().getNotification());
+			}
+		});
+		p.add(pause);
+		JButton next = new JButton("next");
+		next.setBounds(550, 200, 100, 20);
+		next.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Command c = cf.getCommand("Next");
+				mp.executeCommand(c);
+				l.setText(mp.getStreamingServiceApi().getCurrentSong().getDetails());
+				l1.setText(mp.getNotification().getNotification());
+			}
+		});
+		p.add(next);
 		
 	}
 }

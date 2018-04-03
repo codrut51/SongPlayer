@@ -11,8 +11,8 @@ public class PlayPreviousTrack extends Command {
 	}
 
 	@Override
-	public void doAction(MusicPlayer l) {
-		l.getStreamingServiceApi().previous();
+	public void doAction(MusicStreamingServiceApi l) {
+		l.previous();
 	}
 
 	

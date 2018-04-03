@@ -10,9 +10,9 @@ public class PlayNextTrack extends Command {
 	}
 	
 	@Override
-	public void doAction(MusicPlayer l) {
+	public void doAction(MusicStreamingServiceApi l) {
 
-		l.getStreamingServiceApi().next();
+		l.next();
 	}
 
 }

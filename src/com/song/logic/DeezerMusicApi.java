@@ -172,7 +172,7 @@ public class DeezerMusicApi extends MusicStreamingServiceApi{
 			try {
 				// TODO Auto-generated method stub
 				 String searchForType = "track"; //track, album, artist and playlist
-		         String searchFor = "Till%I%Collapse"; //trackname, songname, artistname etc
+		         String searchFor = "lente%in%de%herfst"; //trackname, songname, artistname etc
 		         URL oracle;
 		         if(url == null)
 		         {

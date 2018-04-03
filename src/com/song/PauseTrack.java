@@ -10,9 +10,9 @@ public class PauseTrack extends Command {
 	}
 
 	@Override
-	public void doAction(MusicPlayer l) {
+	public void doAction(MusicStreamingServiceApi l) {
 
-		l.getStreamingServiceApi().pause();
+		l.pause();
 	}
 	
 }

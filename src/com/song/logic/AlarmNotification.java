@@ -2,9 +2,10 @@ package com.song.logic;
 
 public class AlarmNotification extends WatchNotification {
 
-	public AlarmNotification()
+	public AlarmNotification(Notifier n)
 	{
-		
+
+		this.notify = n;
 	}
 	
 	@Override

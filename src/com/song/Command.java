@@ -5,6 +5,6 @@ import com.song.logic.*;
 
 public abstract class Command {
 	
-	public abstract void doAction(MusicPlayer l);
+	public abstract void doAction(MusicStreamingServiceApi l);
 
 }
